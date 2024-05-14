@@ -63,7 +63,7 @@ Source6: init.d.tmpl
 Source7: spark-history-server.svc
 Source8: spark-thriftserver.svc
 Source9: bigtop.bom
-#BIGTOP_PATCH_FILES
+#bIGTOP_PATCH_FILES
 Requires: bigtop-utils >= 0.7, %{hadoop_pkg_name}-client, %{hadoop_pkg_name}-yarn
 Requires(preun): /sbin/service
 
@@ -119,7 +119,7 @@ Group: Development/Libraries
 # BIGTOP-4073 rockylinux 8 use python2, rockylinux 9 use python3
 %if 0%{?rhel} >= 8 || 0%{?openEuler}
 %if 0%{?rhel} == 8
-Requires: %{spark_pkg_name}-core = %{version}-%{release}, python2
+Requires: %{spark_pkg_name}-core = %{version}-%{release}, python3
 %else
 Requires: %{spark_pkg_name}-core = %{version}-%{release}, python3
 %endif
@@ -179,7 +179,7 @@ SparkR is an R package that provides a light-weight frontend to use Apache Spark
 %prep
 %setup -n %{spark_name}-%{spark_base_version}
 
-#BIGTOP_PATCH_COMMANDS
+#bIGTOP_PATCH_COMMANDS
 
 %build
 bash $RPM_SOURCE_DIR/do-component-build

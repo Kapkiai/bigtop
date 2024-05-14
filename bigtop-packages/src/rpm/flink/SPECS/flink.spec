@@ -65,7 +65,7 @@ Source3: init.d.tmpl
 Source4: flink-jobmanager.svc
 Source5: flink-taskmanager.svc
 Source6: bigtop.bom
-#BIGTOP_PATCH_FILES
+#bIGTOP_PATCH_FILES
 Requires: bigtop-utils >= 0.7
 Requires(preun): /sbin/service
 
@@ -118,7 +118,7 @@ Apache Flink Task Manager service.
 
 %prep
 %setup -n %{flink_name}-%{flink_base_version}
-#BIGTOP_PATCH_COMMANDS
+#bIGTOP_PATCH_COMMANDS
 
 %build
 bash $RPM_SOURCE_DIR/do-component-build
