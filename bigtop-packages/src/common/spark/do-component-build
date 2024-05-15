@@ -29,6 +29,7 @@ BUILD_OPTS="-Divy.home=${HOME}/.ivy2 -Dsbt.ivy.home=${HOME}/.ivy2 -Duser.home=${
             -Phive -Phive-thriftserver \
             -Psparkr -Pkubernetes \
             -Pscala-${SCALA_VERSION%.*} \
+            -Pconnect \
             -Dguava.version=27.0-jre \
             $SPARK_BUILD_OPTS"
 
