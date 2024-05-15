@@ -32,7 +32,7 @@
 %define np_var_run_spark /var/run/%{spark_name}
 %define np_etc_spark /etc/%{spark_name}
 
-%define spark_services master worker history-server thriftserver
+%define spark_services master worker history-server thriftserver connect
 
 %if  %{?suse_version:1}0
 %define doc_spark %{doc_dir}/spark
@@ -63,6 +63,7 @@ Source6: init.d.tmpl
 Source7: spark-history-server.svc
 Source8: spark-thriftserver.svc
 Source9: bigtop.bom
+Source10: spark-connect.svc
 #bIGTOP_PATCH_FILES
 Requires: bigtop-utils >= 0.7, %{hadoop_pkg_name}-client, %{hadoop_pkg_name}-yarn
 Requires(preun): /sbin/service
@@ -146,6 +147,14 @@ Requires: %{spark_pkg_name}-core = %{version}-%{release}
 %description -n %{spark_pkg_name}-thriftserver
 Thrift server for Spark SQL
 
+%package -n %{spark_pkg_name}-connect
+Summary: Spark Connect for Spark SQL
+Group: Development/Libraries
+Requires: %{spark_pkg_name}-core = %{version}-%{release}
+
+%description -n %{spark_pkg_name}-connect
+Spark Connect for Spark SQL
+
 %package -n %{spark_pkg_name}-datanucleus
 Summary: DataNucleus libraries for Apache Spark
 Group: Development/Libraries
@@ -189,7 +198,7 @@ bash $RPM_SOURCE_DIR/do-component-build
 %__install -d -m 0755 $RPM_BUILD_ROOT/%{initd_dir}/
 
 %if 0%{?rhel} >= 8
-PYSPARK_PYTHON=python2 bash $RPM_SOURCE_DIR/install_spark.sh \
+PYSPARK_PYTHON=python3 bash $RPM_SOURCE_DIR/install_spark.sh \
           --build-dir=`pwd`         \
           --source-dir=$RPM_SOURCE_DIR \
           --prefix=$RPM_BUILD_ROOT  \
@@ -322,3 +331,4 @@ fi
 %service_macro worker
 %service_macro history-server
 %service_macro thriftserver
+%service_macro connect

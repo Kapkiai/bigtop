@@ -66,6 +66,7 @@ leaves = {
            "flink-historyserver" : "flink",
            "spark-client" : "spark",
            "spark-thriftserver" : "spark",
+           "spark-connect" : "spark",
            "spark-historyserver" : "spark",
            "ranger-admin" : "ranger-admin",
            "ranger-kms" : "ranger-kms",
